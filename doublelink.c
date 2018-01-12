@@ -230,3 +230,11 @@ int8_t dl_remove_prev(dllist_t *l, int32_t key){
     }
     return SUCCESS;
 }
+int main(void)
+{
+    dllist_t *dl = dl_create();
+    dl_insert_beginning(dl, 11);
+    printf("%d\n", dl->head->data);
+    dl_remove_beginning(dl);
+    dl_destroy(&dl);
+}
