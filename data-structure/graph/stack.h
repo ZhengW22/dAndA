@@ -9,7 +9,7 @@
 
 typedef struct stack{
     int  top;
-    int   capacity;
+    int  capacity;
     int* array;
 } Stack;
 

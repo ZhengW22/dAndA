@@ -6,6 +6,7 @@ typedef struct node{
 }Node;
 typedef struct queue
 {
+    int count;
     Node *head;
     Node *tail;
 }Queue;
@@ -24,6 +25,7 @@ Queue* creatQueue()
     Queue *q = (Queue*)malloc(sizeof(Queue));
     q->head = (Node*)NULL;
     q->tail = (Node*)NULL;
+    q->count = 0;
     return q;
 }
 void enqueue(Queue *q, int item)
@@ -35,11 +37,11 @@ void enqueue(Queue *q, int item)
         q->tail->next = createNode(item);
         q->tail = q->tail->next;
     }
+    q->count++;
 }
 void dequeue(Queue *q)
 {
     if(q->head == NULL && q->tail == NULL){
-        printf("The queue is empty.\n");
         return;
     }
     Node *temp = q->head;
@@ -50,6 +52,7 @@ void dequeue(Queue *q)
     else{
         q->head = temp->next;
     }
+    q->count--;
     free(temp);
 }
 void printqueue(Queue *q)
@@ -66,15 +69,11 @@ void printqueue(Queue *q)
     }
     printf("\n");
 }
-int main(void)
+int isEmpty(Queue q)
 {
-    Queue *q = creatQueue();
-    enqueue(q, 1);
-    enqueue(q, 2);
-    printqueue(q);
-    enqueue(q, 3);
-    printqueue(q);
-    dequeue(q);
-    printqueue(q);
-    return 0;
+    return(q.count==0);
+}
+int queueFront(Queue q)
+{
+    return q.head->value;
 }

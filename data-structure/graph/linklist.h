@@ -8,6 +8,7 @@
 #define ERR_MALLOC_FAIL  -3
 struct node{
     int adjvex;
+    int data;
     struct node *next;
 };
 typedef struct node Node;
